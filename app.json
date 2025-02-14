@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.oyerohabib.countryinfoapp"
@@ -23,7 +21,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.oyerohabib.countryinfoapp"
+      "package": "com.oyerohabib.countryinfoapp",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -32,6 +31,7 @@
       "eas": {
         "projectId": "ae9d8e91-3745-4f50-aec7-57a0ee81ee57"
       }
-    }
+    },
+    "owner": "oyerohabib"
   }
 }
