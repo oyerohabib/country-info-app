@@ -18,6 +18,8 @@
     "@types/react": "~18.2.14",
     "axios": "^1.6.2",
     "expo": "~49.0.15",
+    "expo-router": "^4.0.17",
+    "expo-splash-screen": "^0.29.22",
     "expo-status-bar": "~1.6.0",
     "native-base": "^3.4.28",
     "normalize-css-color": "^1.0.2",
