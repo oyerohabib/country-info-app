@@ -9,6 +9,7 @@ import {
   IconButton,
   useColorMode,
   Pressable,
+  Center,
 } from "native-base";
 import { Feather } from "@expo/vector-icons";
 import { Dimensions } from "react-native";
@@ -42,9 +43,6 @@ export const CountryDetails = ({ navigation, route }) => {
   const { country } = route.params;
   const { colorMode } = useColorMode();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Debug log to see the country data
-  console.log("Country Data in Details:", JSON.stringify(country, null, 2));
 
   // Prepare images array with both flag and coat of arms if available
   const images = [];
@@ -121,7 +119,7 @@ export const CountryDetails = ({ navigation, route }) => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Flag Carousel */}
-        {images.length > 0 && (
+        {images.length > 0 ? (
           <Box position="relative">
             <Image
               source={{ uri: images[currentImageIndex] }}
@@ -133,7 +131,7 @@ export const CountryDetails = ({ navigation, route }) => {
               resizeMode="cover"
             />
 
-            {images.length > 1 && (
+            {images.length > 1 ? (
               <>
                 <Pressable
                   position="absolute"
@@ -142,11 +140,11 @@ export const CountryDetails = ({ navigation, route }) => {
                   p="3"
                   onPress={handlePrevImage}
                 >
-                  <Feather
-                    name="chevron-left"
-                    size={24}
-                    color={colorMode === "dark" ? "white" : "black"}
-                  />
+                  <Center>
+                    <Text color={colorMode === "dark" ? "white" : "black"}>
+                      <Feather name="chevron-left" size={24} />
+                    </Text>
+                  </Center>
                 </Pressable>
 
                 <Pressable
@@ -156,11 +154,11 @@ export const CountryDetails = ({ navigation, route }) => {
                   p="3"
                   onPress={handleNextImage}
                 >
-                  <Feather
-                    name="chevron-right"
-                    size={24}
-                    color={colorMode === "dark" ? "white" : "black"}
-                  />
+                  <Center>
+                    <Text color={colorMode === "dark" ? "white" : "black"}>
+                      <Feather name="chevron-right" size={24} />
+                    </Text>
+                  </Center>
                 </Pressable>
 
                 <HStack
@@ -185,9 +183,9 @@ export const CountryDetails = ({ navigation, route }) => {
                   ))}
                 </HStack>
               </>
-            )}
+            ) : null}
           </Box>
-        )}
+        ) : null}
 
         {/* Country Details */}
         <VStack px="4" py="4" space="2">

@@ -29,14 +29,14 @@ export const HomeScreen = ({ navigation }) => {
       const processedData = [];
       let currentLetter = "";
 
-      sortedData.forEach((country) => {
+      sortedData.forEach((country, index) => {
         const firstLetter = country.name.common[0].toUpperCase();
         if (firstLetter !== currentLetter) {
           currentLetter = firstLetter;
           processedData.push({
             type: "header",
             letter: currentLetter,
-            id: `header-${currentLetter}`,
+            id: `header-${currentLetter}-${index}`,
           });
         }
         processedData.push({
@@ -68,14 +68,14 @@ export const HomeScreen = ({ navigation }) => {
     const processedFiltered = [];
     let currentLetter = "";
 
-    filtered.forEach((item) => {
+    filtered.forEach((item, index) => {
       const firstLetter = item.data.name.common[0].toUpperCase();
       if (firstLetter !== currentLetter) {
         currentLetter = firstLetter;
         processedFiltered.push({
           type: "header",
           letter: currentLetter,
-          id: `header-${currentLetter}`,
+          id: `header-${currentLetter}-${index}`,
         });
       }
       processedFiltered.push(item);

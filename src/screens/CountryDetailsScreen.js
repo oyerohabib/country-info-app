@@ -6,7 +6,11 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { Text, IconButton } from "react-native-paper";
+import {
+  Text,
+  IconButton,
+  Provider as PaperProvider,
+} from "react-native-paper";
 import { useTheme } from "../context/ThemeContext";
 
 const CountryDetailsScreen = ({ route, navigation }) => {
@@ -19,68 +23,83 @@ const CountryDetailsScreen = ({ route, navigation }) => {
 
   const InfoRow = ({ label, value }) => (
     <View style={styles.infoRow}>
-      <Text style={[styles.label, { color: theme.colors.text }]}>{label}:</Text>
-      <Text style={[styles.value, { color: theme.colors.text }]}>{value}</Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.label, { color: theme.colors.text }]}
+      >
+        {label}:
+      </Text>
+      <Text
+        variant="bodyMedium"
+        style={[styles.value, { color: theme.colors.text }]}
+      >
+        {value}
+      </Text>
     </View>
   );
 
   return (
-    <View
-      style={[styles.container, { backgroundColor: theme.colors.background }]}
-    >
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <IconButton icon="arrow-left" size={24} color={theme.colors.text} />
-        </TouchableOpacity>
-        <Text style={[styles.title, { color: theme.colors.text }]}>
-          {country.name}
-        </Text>
-      </View>
-
-      <ScrollView style={styles.content}>
-        <Image
-          source={{ uri: country.flag }}
-          style={styles.flag}
-          resizeMode="cover"
-        />
-
-        <View
-          style={[styles.infoContainer, { backgroundColor: theme.colors.card }]}
-        >
-          <InfoRow label="Capital" value={country.capital} />
-          <InfoRow
-            label="Population"
-            value={formatPopulation(country.population)}
-          />
-          <InfoRow label="Continent" value={country.continent} />
-          <InfoRow label="Country Code" value={country.countryCode} />
+    <PaperProvider theme={theme}>
+      <View
+        style={[styles.container, { backgroundColor: theme.colors.background }]}
+      >
+        <View style={styles.header}>
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <IconButton icon="arrow-left" size={24} color={theme.colors.text} />
+          </TouchableOpacity>
+          <Text style={[styles.title, { color: theme.colors.text }]}>
+            {country.name}
+          </Text>
         </View>
 
-        {country.states && country.states.length > 0 && (
+        <ScrollView style={styles.content}>
+          <Image
+            source={{ uri: country.flag }}
+            style={styles.flag}
+            resizeMode="cover"
+          />
+
           <View
             style={[
-              styles.statesContainer,
+              styles.infoContainer,
               { backgroundColor: theme.colors.card },
             ]}
           >
-            <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
-              States/Provinces
-            </Text>
-            {country.states.map((state, index) => (
-              <Text
-                key={index}
-                style={[styles.stateItem, { color: theme.colors.text }]}
-              >
-                {state}
-              </Text>
-            ))}
+            <InfoRow label="Capital" value={country.capital} />
+            <InfoRow
+              label="Population"
+              value={formatPopulation(country.population)}
+            />
+            <InfoRow label="Continent" value={country.continent} />
+            <InfoRow label="Country Code" value={country.countryCode} />
           </View>
-        )}
-      </ScrollView>
-    </View>
+
+          {country.states && country.states.length > 0 && (
+            <View
+              style={[
+                styles.statesContainer,
+                { backgroundColor: theme.colors.card },
+              ]}
+            >
+              <Text style={[styles.sectionTitle, { color: theme.colors.text }]}>
+                States/Provinces
+              </Text>
+              {country.states.map((state, index) => (
+                <Text
+                  key={index}
+                  style={[styles.stateItem, { color: theme.colors.text }]}
+                >
+                  {state}
+                </Text>
+              ))}
+            </View>
+          )}
+        </ScrollView>
+      </View>
+    </PaperProvider>
   );
 };
 
