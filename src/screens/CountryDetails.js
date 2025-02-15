@@ -87,7 +87,6 @@ export const CountryDetails = ({ navigation, route }) => {
 
   return (
     <Box flex={1} bg={colorMode === "dark" ? "dark.bg" : "light.bg"}>
-      {/* Header */}
       <HStack
         px="4"
         py="3"
@@ -114,11 +113,10 @@ export const CountryDetails = ({ navigation, route }) => {
         >
           {country?.name?.common || "Country Details"}
         </Text>
-        <Box w="10" /> {/* Spacer for alignment */}
+        <Box w="10" />
       </HStack>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        {/* Flag Carousel */}
         {images.length > 0 ? (
           <Box position="relative">
             <Image
@@ -187,7 +185,6 @@ export const CountryDetails = ({ navigation, route }) => {
           </Box>
         ) : null}
 
-        {/* Country Details */}
         <VStack px="4" py="4" space="2">
           <DetailRow
             label="Population"
